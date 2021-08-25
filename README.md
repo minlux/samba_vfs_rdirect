@@ -1,6 +1,6 @@
 # Read Direct - A samba VFS module.
 
-This project implements a [virtual file system (VFS)module][1] for Samba 4. When using this module, all files will be opend with `O_DIRECT` flag set. Thus a read access to the file will bypass the kernel filesystem cache and read the file content directly from device.
+This project implements a virtual file system (VFS)module [1] for Samba 4. When using this module, all files will be opend with `O_DIRECT` flag set. Thus a read access to the file will bypass the kernel filesystem cache and read the file content directly from device.
 
 ## Build Preparation
 To build the module, you have to copy the module source file into the samba build tree.
@@ -39,7 +39,11 @@ The module will be build together with the entire samba suite!!! As I just want 
 
 On my Ubuntu 20.04 LTS machine, i had to install some missing dependencies in advance to make the following configuration work:
 ```
-sudo apt-get install ...
+sudo apt-get install \
+   flex \
+   python3-dev \
+   libgnutls28-dev \
+   libparse-yapp-perl
 ```
 
 ```
@@ -58,7 +62,7 @@ sudo apt-get install ...
             --disable-python \
             --bundled-libraries=ALL
 ```
-Note: As I don't use the option `--enable-fhs` all samba related stuff will be (later on) installed to `/usr/local/samba`. This is different to the way most distributors install samba. They are using an [hierarchical file system][2] approach (to install samba "distributed" to /usr, /etc /var, ...).
+Note: As I don't use the option `--enable-fhs` all samba related stuff will be (later on) installed to `/usr/local/samba`. This is different to the way most distributors install samba. They are using an hierarchical file system [2] approach (to install samba "distributed" to /usr, /etc /var, ...).
 
 
 Then the build process can be started with `make` and finally `make install`.
@@ -166,5 +170,6 @@ ncalrpc dir = todo
 
 
 # References
-[1] https://wiki.samba.org/index.php/Virtual_File_System_Modules
-[2] https://en.wikipedia.org/wiki/Hierarchical_File_System
+
+- [1] https://wiki.samba.org/index.php/Virtual_File_System_Modules
+- [2] https://en.wikipedia.org/wiki/Hierarchical_File_System

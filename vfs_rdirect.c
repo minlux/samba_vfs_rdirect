@@ -22,7 +22,8 @@
 
 /* Read-direct module.
  *
- * The purpose of this module is to ... todo
+ * The purpose of this module is to open all files with `O_DIRECT` flag set.
+ * Thus a read access to the file will bypass the kernel filesystem cache and read the file content directly from device.
  *
  */
 
