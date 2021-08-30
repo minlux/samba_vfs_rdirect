@@ -60,6 +60,7 @@ sudo apt-get install \
             --disable-cups \
             --disable-iprint \
             --disable-python \
+            --with-shared-modules='!vfs_snapper' \
             --bundled-libraries=ALL
 ```
 Note: As I don't use the option `--enable-fhs` all samba related stuff will be (later on) installed to `/usr/local/samba`. This is different to the way most distributors install samba. They are using an hierarchical file system [2] approach (to install samba "distributed" to /usr, /etc /var, ...).
